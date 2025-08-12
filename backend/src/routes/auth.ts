@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { createUser, findUserByEmail } from '../services/users.js';
 import bcrypt from 'bcryptjs';
 import { generateAccessToken } from '../services/jwt.js';
+import { writeAuditLog } from '../services/audit.js';
+import { amlScreenUser } from '../services/aml.js';
 
 const router = Router();
 
@@ -13,6 +15,8 @@ router.post('/register', async (req, res, next) => {
     const existing = await findUserByEmail(email);
     if (existing) return res.status(409).json({ error: { code: 'DUPLICATE', message: 'Email already registered' } });
     const user = await createUser(email, phone ?? null, password);
+    await amlScreenUser(user.id, email);
+    await writeAuditLog(user.id, 'USER_REGISTER', 'user', user.id);
     return res.json({ userId: user.id, requiresKyc: true });
   } catch (e) { next(e); }
 });

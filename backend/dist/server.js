@@ -11,7 +11,9 @@ import transferRoutes from './routes/transfers.js';
 import withdrawalsRoutes from './routes/withdrawals.js';
 import agentsRoutes from './routes/agents.js';
 import webhooksRoutes from './routes/webhooks.js';
+import kycRoutes from './routes/kyc.js';
 import { errorHandler } from './middleware/error.js';
+import path from 'path';
 export function createServer() {
     const app = express();
     app.use(express.json());
@@ -30,7 +32,10 @@ export function createServer() {
     app.use('/v1/transfers', transferRoutes);
     app.use('/v1/withdrawals', withdrawalsRoutes);
     app.use('/v1/agents', agentsRoutes);
+    app.use('/v1/kyc', kycRoutes);
     app.use('/v1/webhooks', webhooksRoutes);
+    // Static (dev) KYC file access for admins only (placeholder)
+    app.use('/storage/kyc', express.static(path.join(process.cwd(), 'storage', 'kyc')));
     app.use(errorHandler);
     return app;
 }
