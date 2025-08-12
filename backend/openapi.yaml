@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Remittance API
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080/v1
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                phone: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: OK
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200':
+          description: OK
+  /wallets/me:
+    get:
+      summary: Get my wallet balance
+      responses:
+        '200':
+          description: OK
+  /transfers/quote:
+    post:
+      summary: Create a transfer quote
+      responses:
+        '200':
+          description: OK
+  /transfers/initiate:
+    post:
+      summary: Initiate a transfer
+      responses:
+        '200':
+          description: OK
+  /withdrawals/qr:
+    post:
+      summary: Generate a withdrawal QR
+      responses:
+        '200':
+          description: OK
+  /agents/qr/validate:
+    post:
+      summary: Agent validates a QR
+      responses:
+        '200':
+          description: OK
