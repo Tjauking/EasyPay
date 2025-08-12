@@ -1,0 +1,49 @@
+{
+  "name": "remittance-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "start:mem": "USE_INMEM_DB=1 node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev:mem": "USE_INMEM_DB=1 ts-node-dev --respawn --transpile-only src/index.ts",
+    "lint": "echo \"TODO\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.0.0",
+    "jose": "^5.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.3",
+    "pg-mem": "^3.0.5",
+    "qrcode": "^1.5.3",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1",
+    "yamljs": "^0.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/morgan": "^1.9.7",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^20.12.12",
+    "@types/pg": "^8.11.6",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/uuid": "^9.0.7",
+    "@types/yamljs": "^0.2.34",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.3"
+  }
+}
